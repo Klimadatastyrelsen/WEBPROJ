@@ -23,6 +23,7 @@ RUN conda env create -f environment.yaml
 # Sync PROJ-data files
 RUN conda run -n webproj pyproj sync --source-id dk_sdfe --target-dir $WEBPROJ_LIB
 RUN conda run -n webproj pyproj sync --source-id dk_sdfi --target-dir $WEBPROJ_LIB
+RUN conda run -n webproj pyproj sync --source-id dk_kds  --target-dir $WEBPROJ_LIB
 
 CMD ["conda", "run", "-n", "webproj", "uvicorn", "--proxy-headers", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 

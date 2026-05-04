@@ -6,6 +6,7 @@ dependencies:
   - pip
   - fastapi
   - httpx
+  - proj=9.8.1
   - pyproj
   - pydantic
   - uvicorn
