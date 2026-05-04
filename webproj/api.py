@@ -205,18 +205,18 @@ class OptimusPrime:
         """
         Transform coordinate
         """
-        (v1, v2, v3, v4) = coord
+        v1, v2, v3, v4 = coord
         if self.pre_pipeline:
             out = self.pre_pipeline.transform(v1, v2, v3, v4)
-            (v1, v2, v3, v4) = _make_4d(out)
+            v1, v2, v3, v4 = _make_4d(out)
 
         if self.epsg_pipeline:
             out = self.epsg_pipeline.transform(v1, v2, v3, v4)
-            (v1, v2, v3, v4) = _make_4d(out)
+            v1, v2, v3, v4 = _make_4d(out)
 
         if self.post_pipeline:
             out = self.post_pipeline.transform(v1, v2, v3, v4)
-            (v1, v2, v3, v4) = _make_4d(out)
+            v1, v2, v3, v4 = _make_4d(out)
 
         if float("inf") in out or float("-inf") in out:
             raise HTTPException(
@@ -311,6 +311,7 @@ class WEBPROJInfo(BaseModel):
 # We do this to circumvent implicit redirects made by uvicorn (?) that results
 # in URL's that can't be resolved. We do not include those entry-points in the schema.
 # It may be possible to do this in a cleaner way by configuring uvicorn differently...
+
 
 @app.get("/v1.0/crs/")
 @app.get("/v1.0/crs", include_in_schema=False)
@@ -464,15 +465,15 @@ async def transformation_2d(src: str, dst: str, v: str) -> Coordinate:
         v = v.split(",")
         if len(v) == 4:
             transformer = TransformerFactory.create(src, dst)
-            (v1, v2, v3, v4) = transformer.transform(_make_4d((v[0], v[1], v[2], v[3])))
+            v1, v2, v3, v4 = transformer.transform(_make_4d((v[0], v[1], v[2], v[3])))
             return {"v1": v1, "v2": v2, "v3": v3, "v4": v4}
         elif len(v) == 3:
             transformer = TransformerFactory.create(src, dst)
-            (v1, v2, v3, _) = transformer.transform(_make_4d((v[0], v[1], v[2])))
+            v1, v2, v3, _ = transformer.transform(_make_4d((v[0], v[1], v[2])))
             return {"v1": v1, "v2": v2, "v3": v3, "v4": None}
         elif len(v) == 2:
             transformer = TransformerFactory.create(src, dst)
-            (v1, v2, _, _) = transformer.transform(_make_4d((v[0], v[1])))
+            v1, v2, _, _ = transformer.transform(_make_4d((v[0], v[1])))
             return {"v1": v1, "v2": v2, "v3": None, "v4": None}
     except ValueError as error:
         return HTTPException(status_code=404, detail=error)
@@ -489,7 +490,7 @@ async def transformation_3d(
     """
     try:
         transformer = TransformerFactory.create(src, dst)
-        (v1, v2, v3, _) = transformer.transform(_make_4d((v1, v2, v3)))
+        v1, v2, v3, _ = transformer.transform(_make_4d((v1, v2, v3)))
     except ValueError as error:
         return HTTPException(status_code=404, detail=error)
 
@@ -507,7 +508,7 @@ async def transformation_4d(
     """
     try:
         transformer = TransformerFactory.create(src, dst)
-        (v1, v2, v3, v4) = transformer.transform((v1, v2, v3, v4))
+        v1, v2, v3, v4 = transformer.transform((v1, v2, v3, v4))
     except ValueError as error:
         return HTTPException(status_code=404, detail=error)
 
