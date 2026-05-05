@@ -1,4 +1,5 @@
 from cmath import inf
+import importlib.resources
 import os
 import json
 from pathlib import Path
@@ -16,7 +17,9 @@ from pydantic import BaseModel
 import pyproj
 from pyproj.transformer import Transformer, AreaOfInterest, CRS
 
-__VERSION__ = "1.2.5"
+import webproj
+
+__VERSION__ = webproj.__version__
 
 if "WEBPROJ_LIB" in os.environ:
     pyproj.datadir.append_data_dir(os.environ["WEBPROJ_LIB"])
@@ -73,16 +76,16 @@ app = FastAPI(
     version=__VERSION__,
     terms_of_service="https://dataforsyningen.dk/Vilkaar",
     license="MIT License",
-    license_url="https://raw.githubusercontent.com/SDFIdk/WEBPROJ/master/LICENSE",
+    license_url="https://raw.githubusercontent.com/Klimadatastyrelsen/WEBPROJ/master/LICENSE",
     docs_url="/documentation",
     dependencies=[Depends(token_header_param), Depends(token_query_param)],
 )
 origins = ["*"]
 app.add_middleware(CORSMiddleware, allow_origins=origins)
 
-_DATA = Path(__file__).parent / Path("data.json")
 
-with open(_DATA, "r", encoding="UTF-8") as data:
+EMBEDDED_DATA = importlib.resources.open_text("webproj", "data.json", encoding="utf-8")
+with EMBEDDED_DATA as data:
     CRS_LIST = json.load(data)
     app.CRS_LIST = CRS_LIST
 

@@ -1,1 +1,0 @@
-from webproj import app

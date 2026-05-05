@@ -59,13 +59,13 @@ $ docker build -t webproj .
 The API can be started with
 
 ```
-$ docker run -p 80:80 webproj
+$ docker run -p 8000:80 webproj
 ```
 
 Test it using
 
 ```
-$ curl 127.0.0.1:80/v1.2/info/
+$ curl 127.0.0.1:8000/v1.2/info/
 {"webproj_version":"1.2.5","proj_version":"9.8.1"}
 ```
 
@@ -76,7 +76,7 @@ For a simple demonstration of the WEBPROJ REST API a webserver can
 be started locally by running
 
 ```
-(webproj) C:\dev\webproj>uvicorn app.main:app --host 127.0.0.1 --port 8000
+(webproj) C:\dev\webproj>fastapi dev src/app/main.py
 ```
 
 This will spawn a web-server that serves the API locally on

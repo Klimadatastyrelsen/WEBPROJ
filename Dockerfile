@@ -5,10 +5,10 @@ ENV WEBPROJ_LIB=/proj
 RUN mkdir $WEBPROJ_LIB
 
 # Copy necessary files. Tests and README are needed by setup.py
-COPY /webproj /webproj/webproj
-COPY /app /webproj/app
+COPY /src/webproj /webproj/src/webproj
+COPY /src/app /webproj/src/app
 COPY /tests /webproj/tests
-COPY /setup.py /webproj/setup.py
+COPY /pyproject.toml /webproj/pyproject.toml
 COPY /environment.yaml /webproj/environment.yaml
 COPY /README.md /webproj/README.md
 
@@ -19,6 +19,9 @@ RUN apt-get update -y && apt-get upgrade -y
 
 # Set up virtual environment
 RUN conda env create -f environment.yaml
+
+# Install webproj in conda environment
+RUN conda run -n webproj pip install /webproj/
 
 # Sync PROJ-data files
 RUN conda run -n webproj pyproj sync --source-id dk_sdfe --target-dir $WEBPROJ_LIB

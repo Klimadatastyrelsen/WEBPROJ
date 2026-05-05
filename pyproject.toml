@@ -1,0 +1,44 @@
+[project]
+name = "webproj"
+dynamic = ["version"]
+description = "REST API for PROJ Transformations"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.13"
+authors = [
+  {name = "Klimadatastyrelsen", email = "gdl@kds.dk"},
+]
+keywords = ["PROJ", "transformations", "geodesy", "projections"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Utilities",
+]
+
+[build-system]
+requires = ['setuptools>=64']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools.dynamic]
+version = {attr = "webproj.__version__"}
+
+[tool.setuptools.package-data]
+"webproj" = [
+    "data.json",
+]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = "E203"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "error",
+]
