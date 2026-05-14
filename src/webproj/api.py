@@ -1,8 +1,6 @@
-from cmath import inf
 import importlib.resources
 import os
 import json
-from pathlib import Path
 from typing import List, Tuple, Optional
 
 from fastapi import (
@@ -376,7 +374,7 @@ def crs_v1_1(crs):
     try:
         crs_from_db = pyproj.CRS.from_user_input(crs.upper())
         if crs_from_db.is_compound:
-            area = inf
+            area = float("inf")
             for subcrs in crs_from_db.sub_crs_list:
                 aou = subcrs.area_of_use
                 bbox_area = aou.east - aou.west * aou.north - aou.south
