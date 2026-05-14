@@ -349,7 +349,7 @@ def crs_v1_0(crs):
     try:
         return CRS_LIST[crs.upper()]
     except KeyError:
-        return HTTPException(
+        raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail=f"'{crs}' not available."
         )
 
@@ -369,9 +369,6 @@ def crs_v1_1(crs):
     the CRS info.
     """
     output = crs_v1_0(crs)
-    if isinstance(output, HTTPException):
-        # If we receive an error from crs_v1_0 we swiftly pass it on
-        return output
 
     output["srid"] = crs
 
@@ -401,7 +398,7 @@ def crs_v1_1(crs):
             output["area_of_use"] = "Denmark - Bornholm onshore"
             output["bounding_box"] = [14.6, 54.9, 15.2, 55.3]
         else:
-            return HTTPException(
+            raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail=f"'{crs}' not available.",
             )
@@ -423,9 +420,6 @@ def crs_v1_2(crs):
     Version 1.2 includes coodinate units of the returned CRS.
     """
     output = crs_v1_1(crs)
-    if isinstance(output, HTTPException):
-        # If we receive an error from crs_v1_0 we swiftly pass it on
-        return output
 
     # initialize unit elements in output dict
     for i in range(1, 5):
@@ -448,7 +442,7 @@ def crs_v1_2(crs):
             output["v1_unit"] = "metre"
             output["v2_unit"] = "metre"
         else:
-            return HTTPException(
+            raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST, detail=f"'{crs}' not available"
             )
 
@@ -479,7 +473,7 @@ async def transformation_2d(src: str, dst: str, v: str) -> Coordinate:
             v1, v2, _, _ = transformer.transform(_make_4d((v[0], v[1])))
             return {"v1": v1, "v2": v2, "v3": None, "v4": None}
     except ValueError as error:
-        return HTTPException(status_code=404, detail=error)
+        raise HTTPException(status_code=404, detail=error)
 
 
 @app.get("/v1.0/trans/{src}/{dst}/{v1},{v2},{v3}")
@@ -495,7 +489,7 @@ async def transformation_3d(
         transformer = TransformerFactory.create(src, dst)
         v1, v2, v3, _ = transformer.transform(_make_4d((v1, v2, v3)))
     except ValueError as error:
-        return HTTPException(status_code=404, detail=error)
+        raise HTTPException(status_code=404, detail=error)
 
     return {"v1": v1, "v2": v2, "v3": v3, "v4": None}
 
@@ -513,7 +507,7 @@ async def transformation_4d(
         transformer = TransformerFactory.create(src, dst)
         v1, v2, v3, v4 = transformer.transform((v1, v2, v3, v4))
     except ValueError as error:
-        return HTTPException(status_code=404, detail=error)
+        raise HTTPException(status_code=404, detail=error)
 
     return {"v1": v1, "v2": v2, "v3": v3, "v4": v4}
 

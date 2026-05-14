@@ -393,3 +393,41 @@ def test_info(api_from_v1_2):
     for software, version_number in response.items():
         print(software, version_number)
         assert re.match(r"^\d+\.\d+\.\d+$", version_number)
+
+
+def test_unknown_crs_returns_400(api_all):
+    client = TestClient(app)
+    response = client.get(f"/{api_all}/crs/unknowncrs")
+    assert response.status_code == 400
+    assert response.json()["detail"] == "'unknowncrs' not available."
+
+
+def test_unknown_source_crs_returns_400(api_all):
+    client = TestClient(app)
+    response = client.get(f"/{api_all}/trans/UNKNOWN/EPSG:25832/56.0,12.0")
+    assert response.status_code == 400
+    assert "UNKNOWN" in response.json()["detail"]
+
+
+def test_unknown_destination_crs_returns_400(api_all):
+    client = TestClient(app)
+    response = client.get(f"/{api_all}/trans/EPSG:4258/UNKNOWN/56.0,12.0")
+    assert response.status_code == 400
+    assert "UNKNOWN" in response.json()["detail"]
+
+
+def test_cross_country_transformation_returns_400(api_all):
+    client = TestClient(app)
+    response = client.get(f"/{api_all}/trans/EPSG:4258/EPSG:4909/55.0,12.0")
+    assert response.status_code == 400
+    assert response.json()["detail"] == "CRS's are not compatible across countries"
+
+
+def test_outside_area_of_use_returns_404(api_all):
+    client = TestClient(app)
+    response = client.get(f"/{api_all}/trans/EPSG:4258/DK:S34S/12.0,56.0")
+    assert response.status_code == 404
+    assert (
+        response.json()["detail"]
+        == "Input coordinate outside area of use of either source or destination CRS"
+    )
