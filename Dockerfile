@@ -1,4 +1,4 @@
-FROM condaforge/miniforge3
+FROM condaforge/miniforge3:26.1.1-3
 
 # We store PROJ ressources in $WEBPROJ_LIB
 ENV WEBPROJ_LIB=/proj

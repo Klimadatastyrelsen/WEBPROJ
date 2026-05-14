@@ -1,0 +1,17 @@
+.git
+.gitattributes
+.gitignore
+.github
+.vscode
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.ruff_cache
+.coverage
+*.egg-info
+environment-dev.yaml
+scripts
+test_s34s.out
+HOWTORELEASE.md
+LICENSE
