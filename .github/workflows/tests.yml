@@ -1,5 +1,5 @@
 name: Tests
-'on': [push, pull_request]
+on: [push, pull_request]
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -8,7 +8,7 @@ jobs:
         shell: bash -l {0}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: docker build --tag webproj .
       - run: 'docker run -d -p 80:80 --name restapi webproj'
       - run: docker ps
@@ -24,8 +24,17 @@ jobs:
             activate-environment: webproj
             use-only-tar-bz2: true # IMPORTANT: This needs to be set for caching to work properly!
 
+      - name: Sync PROJ data
+        run: |
+          pyproj sync --source-id dk_sdfe
+          pyproj sync --source-id dk_sdfi
+          pyproj sync --source-id dk_kds
+
+      - name: Install webproj
+        run: pip install .
+
       - name: Pytest
-        run: pytest --cov
+        run: pytest
 
       - run: curl -s localhost/v1.0/trans/EPSG:4258/DK:S34S/55.0,12.0 > S34S.out
 

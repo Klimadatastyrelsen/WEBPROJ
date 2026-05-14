@@ -316,6 +316,7 @@ def test_combined_epsg_codes(api_all):
     }
     _assert_coordinate(api_entry, expected, tolerance=0.01)
 
+
 def test_conversion_to_3d(api_all):
     """
     Test that a 2D CRS is correctly promoted to 3D when used in
@@ -330,6 +331,7 @@ def test_conversion_to_3d(api_all):
         "v4": None,
     }
     _assert_coordinate(api_entry, expected, tolerance=0.01)
+
 
 def test_crs_return_srid(api_from_v1_1):
     """

@@ -9,6 +9,7 @@ If necessary, the old ways can be introduced in FastAPI as well using a response
 For more, see:
 https://stackoverflow.com/questions/67783530/is-there-a-way-to-pretty-print-prettify-a-json-response-in-fastapi
 """
+
 import json
 
 import requests
@@ -18,6 +19,7 @@ TOKEN = "<INSER TOKEN HERE>"
 URL_TEST = "https://api.dataforsyningen.dk/rest/webproj_test/"
 URL_PROD = "https://api.dataforsyningen.dk/rest/webproj/"
 
+# fmt: off
 TEST_CASES = [
     "v1.0/crs/",
     "v1.1/crs/",
@@ -61,6 +63,8 @@ EXPECTED_FAILURES = [
     "v1.1/trans/EPSG:4258+5799/EPSG:4230+5733/55.6581,11.5991,52.4",
     "v1.2/trans/EPSG:4258+5799/EPSG:4230+5733/55.6581,11.5991,52.4",
  ]
+# fmt: on
+
 
 def run_test_case(test_case: str) -> bool:
     """
@@ -84,13 +88,14 @@ def run_test_case(test_case: str) -> bool:
     print(f"{test_case} {(test_result)}")
 
     if not test_result:
-        print("-"*25)
+        print("-" * 25)
         print(json_prod)
         print("")
         print(json_test)
-        print("-"*25)
+        print("-" * 25)
 
     return test_result
+
 
 if __name__ == "__main__":
     for test_case in TEST_CASES:
