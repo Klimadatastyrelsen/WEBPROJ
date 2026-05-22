@@ -14,15 +14,15 @@ entry points are provided: `/crs/` and `/trans/`.
 
 ### Installation
 
-For ease of installation it is recommended to setup an environment
-using conda
+This repository supports development environments via either [conda](https://anaconda.org/anaconda/conda) or [uv](https://docs.astral.sh/uv/). Pick uv if you care about alignment with production.
+
+#### Conda
+
+Create a new environment
 
 ```
-$ conda env create -f environment.yaml
+$ conda env create -f environment-dev.yaml
 ```
-
-Replace `environment.yaml` with `environment-dev.yaml` if you want
-to setup a development environment.
 
 Activate the new environment with
 
@@ -36,6 +36,32 @@ Remember to run projsync in order to install the datum grids.
 $ projsync --source-id dk_sdfe
 $ projsync --source-id dk_sdfi
 $ projsync --source-id dk_kds
+```
+
+#### uv
+
+1. Create a new environment: `uv venv`
+2. Install dependencies: `uv pip install -e '.[dev]'`
+3. Sync the datum grids: 
+
+```bash
+uv run pyproj sync --source-id dk_sdfe
+uv run pyproj sync --source-id dk_sdfi
+uv run pyproj sync --source-id dk_kds
+```
+
+And that's that. 
+
+Start the local webserver with:
+
+```bash
+uv run fastapi dev src/app/main.py
+```
+
+Run tests with:
+
+```bash
+uv run pytest
 ```
 
 ### Tests
@@ -59,14 +85,14 @@ $ docker build -t webproj .
 The API can be started with
 
 ```
-$ docker run -p 8000:80 webproj
+$ docker run -p 8000:8080 webproj
 ```
 
 Test it using
 
 ```
 $ curl 127.0.0.1:8000/v1.2/info/
-{"webproj_version":"1.2.5","proj_version":"9.8.1"}
+{"webproj_version":"1.2.5","proj_version":"9.5.1"}
 ```
 
 
@@ -76,7 +102,7 @@ For a simple demonstration of the WEBPROJ REST API a webserver can
 be started locally by running
 
 ```
-(webproj) C:\dev\webproj>fastapi dev src/app/main.py
+$ uv run fastapi dev src/app/main.py
 ```
 
 This will spawn a web-server that serves the API locally on
