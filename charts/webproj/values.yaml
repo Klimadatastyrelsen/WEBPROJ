@@ -1,0 +1,47 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/klimadatastyrelsen/webproj
+  # tag defaults to .Chart.AppVersion when empty - keeps chart and image in lockstep
+  tag: ""
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+env:
+  WEB_CONCURRENCY: "4"
+  TZ: "Europe/Copenhagen"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL

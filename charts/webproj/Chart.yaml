@@ -1,0 +1,6 @@
+apiVersion: v2
+name: webproj
+description: REST API for PROJ coordinate transformations
+type: application
+version: 1.2.5
+appVersion: "1.2.5"
