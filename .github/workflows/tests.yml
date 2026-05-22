@@ -3,26 +3,26 @@ on: [push, pull_request]
 jobs:
   Build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
 
     steps:
       - uses: actions/checkout@v4
       - run: docker build --tag webproj .
-      - run: 'docker run -d -p 80:80 --name restapi webproj'
+      - run: 'docker run -d -p 80:8080 --name restapi webproj'
       - run: docker ps
-      - run: sudo apt-get update
 
-      - name: Setup conda
-        uses: conda-incubator/setup-miniconda@v3
+      - uses: actions/setup-python@v6
         with:
-            miniforge-version: latest
-            use-mamba: true
-            environment-file: environment-dev.yaml
-            auto-activate-base: false
-            activate-environment: webproj
-            use-only-tar-bz2: true # IMPORTANT: This needs to be set for caching to work properly!
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir \
+            'pyproj==3.7.2' \
+            fastapi \
+            'uvicorn[standard]' \
+            pydantic \
+            httpx \
+            pytest
 
       - name: Sync PROJ data
         run: |
