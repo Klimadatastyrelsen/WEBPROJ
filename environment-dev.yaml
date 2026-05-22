@@ -7,7 +7,7 @@ dependencies:
   - fastapi
   - httpx
   - proj=9.8.1
-  - pyproj
+  - pyproj=3.7.2
   - pydantic
   - uvicorn
   - setuptools >= 64
