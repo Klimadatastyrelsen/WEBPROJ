@@ -14,24 +14,14 @@ jobs:
         with:
           python-version: '3.14'
 
-      - name: Install dependencies
-        run: |
-          pip install --no-cache-dir \
-            'pyproj==3.7.2' \
-            fastapi \
-            'uvicorn[standard]' \
-            pydantic \
-            httpx \
-            pytest
+      - name: Install webproj with test extras
+        run: pip install --no-cache-dir '.[test]'
 
       - name: Sync PROJ data
         run: |
           pyproj sync --source-id dk_sdfe
           pyproj sync --source-id dk_sdfi
           pyproj sync --source-id dk_kds
-
-      - name: Install webproj
-        run: pip install .
 
       - name: Pytest
         run: pytest

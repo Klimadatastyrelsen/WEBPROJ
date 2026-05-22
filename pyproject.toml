@@ -21,6 +21,18 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
     "Topic :: Utilities",
 ]
+dependencies = [
+    "pyproj==3.7.2",
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "httpx",
+]
 
 [build-system]
 requires = ['setuptools>=64']

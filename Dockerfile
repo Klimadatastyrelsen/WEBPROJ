@@ -18,13 +18,7 @@ WORKDIR /webproj
 COPY src ./src
 COPY pyproject.toml README.md ./
 
-RUN pip install \
-    'pyproj==3.7.2' \
-    fastapi \
-    'uvicorn[standard]' \
-    pydantic \
-    httpx \
- && pip install . \
+RUN pip install . \
  && pyproj sync --source-id dk_sdfe --target-dir $WEBPROJ_LIB \
  && pyproj sync --source-id dk_sdfi --target-dir $WEBPROJ_LIB \
  && pyproj sync --source-id dk_kds  --target-dir $WEBPROJ_LIB \
