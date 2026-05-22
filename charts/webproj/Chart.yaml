@@ -2,5 +2,9 @@ apiVersion: v2
 name: webproj
 description: REST API for PROJ coordinate transformations
 type: application
-version: 1.2.5
-appVersion: "1.2.5"
+
+# these are placeholders - the release workflow overrides
+# both via `helm package --version/--app-version`, sourced from
+# src/webproj/__init__.py:__version__
+version: 0.0.0
+appVersion: "0.0.0"
