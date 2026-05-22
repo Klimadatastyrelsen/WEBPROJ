@@ -7,4 +7,6 @@ __pycache__
 .coverage
 lcov.info
 build/
-uv.lock # not canonical, gitignored as such
+
+# not canonical, gitignored as such
+uv.lock
