@@ -33,6 +33,10 @@ test = [
     "pytest",
     "httpx",
 ]
+dev = [
+    "webproj[test]",
+    "fastapi-cli",
+]
 
 [build-system]
 requires = ['setuptools>=64']
