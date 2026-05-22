@@ -1,33 +1,37 @@
-FROM condaforge/miniforge3:26.1.1-3
+FROM python:3.14-slim-trixie
 
-# We store PROJ ressources in $WEBPROJ_LIB
-ENV WEBPROJ_LIB=/proj
-RUN mkdir $WEBPROJ_LIB
+# 1) skip pip cache at runtime to keep image lean
+# 2) don't write __pycache__/*.pyc - respect read-only fs
+# 3) force stdout/stderr to flush per-line for observability
+ENV WEBPROJ_LIB=/proj \
+    PIP_NO_CACHE_DIR=1 \ 
+    PYTHONDONTWRITEBYTECODE=1 \ 
+    PYTHONUNBUFFERED=1
 
-# Copy necessary files. Tests and README are needed by setup.py
-COPY /src/webproj /webproj/src/webproj
-COPY /src/app /webproj/src/app
-COPY /tests /webproj/tests
-COPY /pyproject.toml /webproj/pyproject.toml
-COPY /environment.yaml /webproj/environment.yaml
-COPY /README.md /webproj/README.md
+# set up for rootless runtime
+RUN groupadd --system --gid 10001 webproj \
+ && useradd --system --uid 10001 --gid webproj --no-create-home webproj \
+ && mkdir -p $WEBPROJ_LIB
 
 WORKDIR /webproj
 
-# Running upgrade for security
-RUN apt-get update -y && apt-get upgrade -y
+COPY src ./src
+COPY pyproject.toml README.md ./
 
-# Set up virtual environment
-RUN conda env create -f environment.yaml
+RUN pip install \
+    'pyproj==3.7.2' \
+    fastapi \
+    'uvicorn[standard]' \
+    pydantic \
+    httpx \
+ && pip install . \
+ && pyproj sync --source-id dk_sdfe --target-dir $WEBPROJ_LIB \
+ && pyproj sync --source-id dk_sdfi --target-dir $WEBPROJ_LIB \
+ && pyproj sync --source-id dk_kds  --target-dir $WEBPROJ_LIB \
+ && chown -R webproj:webproj $WEBPROJ_LIB /webproj
 
-# Install webproj in conda environment
-RUN conda run -n webproj pip install /webproj/
+USER webproj
 
-# Sync PROJ-data files
-RUN conda run -n webproj pyproj sync --source-id dk_sdfe --target-dir $WEBPROJ_LIB
-RUN conda run -n webproj pyproj sync --source-id dk_sdfi --target-dir $WEBPROJ_LIB
-RUN conda run -n webproj pyproj sync --source-id dk_kds  --target-dir $WEBPROJ_LIB
-
-CMD ["conda", "run", "-n", "webproj", "uvicorn", "--proxy-headers", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
-
-EXPOSE 80
+# 8080 to avoid privileged ports
+EXPOSE 8080
+CMD ["uvicorn", "--proxy-headers", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
