@@ -520,3 +520,8 @@ async def info() -> WEBPROJInfo:
         "webproj_version": __VERSION__,
         "proj_version": pyproj.__proj_version__,
     }
+
+
+@app.get("/health", include_in_schema=False)
+async def health():
+    return {"status": "ok"}
