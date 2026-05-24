@@ -92,7 +92,7 @@ Test it using
 
 ```
 $ curl 127.0.0.1:8000/v1.2/info/
-{"webproj_version":"1.2.5","proj_version":"9.5.1"}
+{"webproj_version":"1.2.5","proj_version":"9.8.1"}
 ```
 
 
