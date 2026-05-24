@@ -81,7 +81,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends libsqlite3-0 libtiff6 libcurl4 \
  && rm -rf /var/lib/apt/lists/*
 
-# rootless runtime user, mathces a proper helm securitycontext
+# rootless runtime user, matches a proper helm securitycontext
 RUN groupadd --system --gid 10001 webproj \
  && useradd --system --uid 10001 --gid webproj --no-create-home webproj
 
