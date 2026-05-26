@@ -431,3 +431,10 @@ def test_outside_area_of_use_returns_404(api_all):
         response.json()["detail"]
         == "Input coordinate outside area of use of either source or destination CRS"
     )
+
+
+def test_health():
+    client = TestClient(app)
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
