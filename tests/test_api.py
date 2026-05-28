@@ -392,7 +392,7 @@ def test_info(api_from_v1_2):
 
     for software, version_number in response.items():
         print(software, version_number)
-        assert re.match(r"^\d+\.\d+\.\d+$", version_number)
+        assert re.match(r"^\d+\.\d+\.\d+(?:(?:a|b|rc|\.dev|\.post)\d+)?$", version_number)
 
 
 def test_unknown_crs_returns_400(api_all):
