@@ -5,7 +5,7 @@ dependencies:
   - python >= 3.14
   - pip
   - fastapi
-  - httpx
+  - httpx2
   - proj=9.8.1
   - pyproj=3.7.2
   - pydantic
