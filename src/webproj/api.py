@@ -79,7 +79,7 @@ app = FastAPI(
     dependencies=[Depends(token_header_param), Depends(token_query_param)],
 )
 origins = ["*"]
-app.add_middleware(CORSMiddleware, allow_origins=origins)
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_headers=["authorization"])
 
 
 EMBEDDED_DATA = importlib.resources.open_text("webproj", "data.json", encoding="utf-8")
