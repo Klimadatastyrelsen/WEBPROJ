@@ -73,8 +73,10 @@ app = FastAPI(
     "tjenester.",
     version=__VERSION__,
     terms_of_service="https://dataforsyningen.dk/Vilkaar",
-    license="MIT License",
-    license_url="https://raw.githubusercontent.com/Klimadatastyrelsen/WEBPROJ/master/LICENSE",
+    license_info={
+        "name": "MIT License",
+        "url": "https://raw.githubusercontent.com/Klimadatastyrelsen/WEBPROJ/master/LICENSE",
+    },
     docs_url="/documentation",
     dependencies=[Depends(token_header_param), Depends(token_query_param)],
 )

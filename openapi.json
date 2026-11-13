@@ -551,6 +551,10 @@
   },
   "info": {
     "description": "## API til koordinattransformationer\n\nAPIet __WEBPROJ__ giver adgang til at transformere multidimensionelle koordinatsæt. \n\nTil adgang benyttes Dataforsyningens brugeradgang som ved andre tjenester.",
+    "license": {
+      "name": "MIT License",
+      "url": "https://raw.githubusercontent.com/Klimadatastyrelsen/WEBPROJ/master/LICENSE"
+    },
     "termsOfService": "https://dataforsyningen.dk/Vilkaar",
     "title": "WEBPROJ",
     "version": "1.2.7"
