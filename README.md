@@ -113,6 +113,12 @@ entry points. OpenAPI documentation is auto-generated and is available
 in a user-friendly web UI at `/documentation`. A machine-readable version
 of the same documentation is available at `/openapi.json`.
 
+A copy of the spec is committed as `openapi.json` in the repository root.
+The KDS documentation site syncs it, together with the pages in `docs/site/`,
+from this repository. When the API or `__version__` changes, regenerate it
+with `python scripts/export_openapi.py` and commit the result. CI fails if
+the committed file is out of date.
+
 For version 1.0 of the API we have:
 
 #### `/crs/`
