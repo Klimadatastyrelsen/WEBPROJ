@@ -1,0 +1,1573 @@
+{
+  "components": {
+    "schemas": {
+      "CRSList": {
+        "description": "Return response for List of CRS's",
+        "properties": {
+          "DK": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Dk",
+            "type": "array"
+          },
+          "GL": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Gl",
+            "type": "array"
+          },
+          "Global": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Global",
+            "type": "array"
+          }
+        },
+        "required": [
+          "DK",
+          "GL",
+          "Global"
+        ],
+        "title": "CRSList",
+        "type": "object"
+      },
+      "CRS_1_0": {
+        "description": "Return response for CRS",
+        "properties": {
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "title_short": {
+            "title": "Title Short",
+            "type": "string"
+          },
+          "v1": {
+            "title": "V1",
+            "type": "string"
+          },
+          "v1_short": {
+            "title": "V1 Short",
+            "type": "string"
+          },
+          "v2": {
+            "title": "V2",
+            "type": "string"
+          },
+          "v2_short": {
+            "title": "V2 Short",
+            "type": "string"
+          },
+          "v3": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3"
+          },
+          "v3_short": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3 Short"
+          },
+          "v4": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4"
+          },
+          "v4_short": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4 Short"
+          }
+        },
+        "required": [
+          "country",
+          "title",
+          "title_short",
+          "v1",
+          "v1_short",
+          "v2",
+          "v2_short",
+          "v3",
+          "v3_short",
+          "v4",
+          "v4_short"
+        ],
+        "title": "CRS_1_0",
+        "type": "object"
+      },
+      "CRS_1_1": {
+        "description": "Return response for CRS",
+        "properties": {
+          "area_of_use": {
+            "title": "Area Of Use",
+            "type": "string"
+          },
+          "bounding_box": {
+            "maxItems": 4,
+            "minItems": 4,
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "title": "Bounding Box",
+            "type": "array"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "srid": {
+            "title": "Srid",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "title_short": {
+            "title": "Title Short",
+            "type": "string"
+          },
+          "v1": {
+            "title": "V1",
+            "type": "string"
+          },
+          "v1_short": {
+            "title": "V1 Short",
+            "type": "string"
+          },
+          "v2": {
+            "title": "V2",
+            "type": "string"
+          },
+          "v2_short": {
+            "title": "V2 Short",
+            "type": "string"
+          },
+          "v3": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3"
+          },
+          "v3_short": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3 Short"
+          },
+          "v4": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4"
+          },
+          "v4_short": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4 Short"
+          }
+        },
+        "required": [
+          "country",
+          "title",
+          "title_short",
+          "v1",
+          "v1_short",
+          "v2",
+          "v2_short",
+          "v3",
+          "v3_short",
+          "v4",
+          "v4_short",
+          "srid",
+          "area_of_use",
+          "bounding_box"
+        ],
+        "title": "CRS_1_1",
+        "type": "object"
+      },
+      "CRS_1_2": {
+        "description": "Return response for CRS",
+        "properties": {
+          "area_of_use": {
+            "title": "Area Of Use",
+            "type": "string"
+          },
+          "bounding_box": {
+            "maxItems": 4,
+            "minItems": 4,
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "title": "Bounding Box",
+            "type": "array"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "srid": {
+            "title": "Srid",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "title_short": {
+            "title": "Title Short",
+            "type": "string"
+          },
+          "v1": {
+            "title": "V1",
+            "type": "string"
+          },
+          "v1_short": {
+            "title": "V1 Short",
+            "type": "string"
+          },
+          "v1_unit": {
+            "title": "V1 Unit",
+            "type": "string"
+          },
+          "v2": {
+            "title": "V2",
+            "type": "string"
+          },
+          "v2_short": {
+            "title": "V2 Short",
+            "type": "string"
+          },
+          "v2_unit": {
+            "title": "V2 Unit",
+            "type": "string"
+          },
+          "v3": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3"
+          },
+          "v3_short": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3 Short"
+          },
+          "v3_unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3 Unit"
+          },
+          "v4": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4"
+          },
+          "v4_short": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4 Short"
+          },
+          "v4_unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4 Unit"
+          }
+        },
+        "required": [
+          "country",
+          "title",
+          "title_short",
+          "v1",
+          "v1_short",
+          "v2",
+          "v2_short",
+          "v3",
+          "v3_short",
+          "v4",
+          "v4_short",
+          "srid",
+          "area_of_use",
+          "bounding_box",
+          "v1_unit",
+          "v2_unit",
+          "v3_unit",
+          "v4_unit"
+        ],
+        "title": "CRS_1_2",
+        "type": "object"
+      },
+      "Coordinate": {
+        "description": "Return response of a coordinate",
+        "properties": {
+          "v1": {
+            "title": "V1",
+            "type": "number"
+          },
+          "v2": {
+            "title": "V2",
+            "type": "number"
+          },
+          "v3": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V3"
+          },
+          "v4": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V4"
+          }
+        },
+        "required": [
+          "v1",
+          "v2",
+          "v3",
+          "v4"
+        ],
+        "title": "Coordinate",
+        "type": "object"
+      },
+      "HTTPError": {
+        "description": "Return response in case of an error",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          }
+        },
+        "required": [
+          "detail"
+        ],
+        "title": "HTTPError",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "WEBPROJInfo": {
+        "description": "Return response for WEBPROJ info",
+        "properties": {
+          "proj_version": {
+            "title": "Proj Version",
+            "type": "string"
+          },
+          "webproj_version": {
+            "title": "Webproj Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "webproj_version",
+          "proj_version"
+        ],
+        "title": "WEBPROJInfo",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "in": "header",
+        "name": "token",
+        "type": "apiKey"
+      },
+      "APIKeyQuery": {
+        "in": "query",
+        "name": "token",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "description": "## API til koordinattransformationer\n\nAPIet __WEBPROJ__ giver adgang til at transformere multidimensionelle koordinatsæt. \n\nTil adgang benyttes Dataforsyningens brugeradgang som ved andre tjenester.",
+    "license": {
+      "name": "MIT License",
+      "url": "https://raw.githubusercontent.com/Klimadatastyrelsen/WEBPROJ/master/LICENSE"
+    },
+    "termsOfService": "https://dataforsyningen.dk/Vilkaar",
+    "title": "WEBPROJ",
+    "version": "1.2.7"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/v1.0/crs/": {
+      "get": {
+        "description": "List available coordinate reference systems",
+        "operationId": "crs_index_v1_0_crs__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CRSList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Crs Index"
+      }
+    },
+    "/v1.0/crs/{crs}": {
+      "get": {
+        "description": "Retrieve information about a given coordinate reference system",
+        "operationId": "crs_v1_0_v1_0_crs__crs__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "crs",
+            "required": true,
+            "schema": {
+              "title": "Crs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CRS_1_0"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Crs V1 0"
+      }
+    },
+    "/v1.0/trans/{src}/{dst}/{v1},{v2},{v3}": {
+      "get": {
+        "description": "Transform a 3D coordinate from one CRS to another",
+        "operationId": "transformation_3d_v1_0_trans__src___dst___v1___v2___v3__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v1",
+            "required": true,
+            "schema": {
+              "title": "V1",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v2",
+            "required": true,
+            "schema": {
+              "title": "V2",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v3",
+            "required": true,
+            "schema": {
+              "title": "V3",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 3D"
+      }
+    },
+    "/v1.0/trans/{src}/{dst}/{v1},{v2},{v3},{v4}": {
+      "get": {
+        "description": "Transform a 4D coordinate from one CRS to another",
+        "operationId": "transformation_4d_v1_0_trans__src___dst___v1___v2___v3___v4__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v1",
+            "required": true,
+            "schema": {
+              "title": "V1",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v2",
+            "required": true,
+            "schema": {
+              "title": "V2",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v3",
+            "required": true,
+            "schema": {
+              "title": "V3",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v4",
+            "required": true,
+            "schema": {
+              "title": "V4",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 4D"
+      }
+    },
+    "/v1.0/trans/{src}/{dst}/{v}": {
+      "get": {
+        "description": "Transform a 2D coordinate from one CRS to another",
+        "operationId": "transformation_2d_v1_0_trans__src___dst___v__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v",
+            "required": true,
+            "schema": {
+              "title": "V",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 2D"
+      }
+    },
+    "/v1.1/crs/": {
+      "get": {
+        "description": "List available coordinate reference systems",
+        "operationId": "crs_index_v1_1_crs__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CRSList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Crs Index"
+      }
+    },
+    "/v1.1/crs/{crs}": {
+      "get": {
+        "description": "Retrieve information about a given coordinate reference system\n\nVersion 1.1 includes the SRID, area of use and bounding box in\nthe CRS info.",
+        "operationId": "crs_v1_1_v1_1_crs__crs__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "crs",
+            "required": true,
+            "schema": {
+              "title": "Crs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CRS_1_1"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Crs V1 1"
+      }
+    },
+    "/v1.1/trans/{src}/{dst}/{v1},{v2},{v3}": {
+      "get": {
+        "description": "Transform a 3D coordinate from one CRS to another",
+        "operationId": "transformation_3d_v1_1_trans__src___dst___v1___v2___v3__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v1",
+            "required": true,
+            "schema": {
+              "title": "V1",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v2",
+            "required": true,
+            "schema": {
+              "title": "V2",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v3",
+            "required": true,
+            "schema": {
+              "title": "V3",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 3D"
+      }
+    },
+    "/v1.1/trans/{src}/{dst}/{v1},{v2},{v3},{v4}": {
+      "get": {
+        "description": "Transform a 4D coordinate from one CRS to another",
+        "operationId": "transformation_4d_v1_1_trans__src___dst___v1___v2___v3___v4__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v1",
+            "required": true,
+            "schema": {
+              "title": "V1",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v2",
+            "required": true,
+            "schema": {
+              "title": "V2",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v3",
+            "required": true,
+            "schema": {
+              "title": "V3",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v4",
+            "required": true,
+            "schema": {
+              "title": "V4",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 4D"
+      }
+    },
+    "/v1.1/trans/{src}/{dst}/{v}": {
+      "get": {
+        "description": "Transform a 2D coordinate from one CRS to another",
+        "operationId": "transformation_2d_v1_1_trans__src___dst___v__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v",
+            "required": true,
+            "schema": {
+              "title": "V",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 2D"
+      }
+    },
+    "/v1.2/crs/": {
+      "get": {
+        "description": "List available coordinate reference systems",
+        "operationId": "crs_index_v1_2_crs__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CRSList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Crs Index"
+      }
+    },
+    "/v1.2/crs/{crs}": {
+      "get": {
+        "description": "Retrieve information about a given coordinate reference system\n\nVersion 1.2 includes coodinate units of the returned CRS.",
+        "operationId": "crs_v1_2_v1_2_crs__crs__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "crs",
+            "required": true,
+            "schema": {
+              "title": "Crs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CRS_1_2"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Crs V1 2"
+      }
+    },
+    "/v1.2/info/": {
+      "get": {
+        "description": "Retrieve information about the running instance of WEBPROJ and it's constituent components.",
+        "operationId": "info_v1_2_info__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WEBPROJInfo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Info"
+      }
+    },
+    "/v1.2/trans/{src}/{dst}/{v1},{v2},{v3}": {
+      "get": {
+        "description": "Transform a 3D coordinate from one CRS to another",
+        "operationId": "transformation_3d_v1_2_trans__src___dst___v1___v2___v3__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v1",
+            "required": true,
+            "schema": {
+              "title": "V1",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v2",
+            "required": true,
+            "schema": {
+              "title": "V2",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v3",
+            "required": true,
+            "schema": {
+              "title": "V3",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 3D"
+      }
+    },
+    "/v1.2/trans/{src}/{dst}/{v1},{v2},{v3},{v4}": {
+      "get": {
+        "description": "Transform a 4D coordinate from one CRS to another",
+        "operationId": "transformation_4d_v1_2_trans__src___dst___v1___v2___v3___v4__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v1",
+            "required": true,
+            "schema": {
+              "title": "V1",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v2",
+            "required": true,
+            "schema": {
+              "title": "V2",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v3",
+            "required": true,
+            "schema": {
+              "title": "V3",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v4",
+            "required": true,
+            "schema": {
+              "title": "V4",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 4D"
+      }
+    },
+    "/v1.2/trans/{src}/{dst}/{v}": {
+      "get": {
+        "description": "Transform a 2D coordinate from one CRS to another",
+        "operationId": "transformation_2d_v1_2_trans__src___dst___v__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "src",
+            "required": true,
+            "schema": {
+              "title": "Src",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "dst",
+            "required": true,
+            "schema": {
+              "title": "Dst",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "v",
+            "required": true,
+            "schema": {
+              "title": "V",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          },
+          {
+            "APIKeyQuery": []
+          }
+        ],
+        "summary": "Transformation 2D"
+      }
+    }
+  }
+}
