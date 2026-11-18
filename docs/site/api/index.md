@@ -1,8 +1,8 @@
 ---
-title: WEBPROJ
 description: Transformér koordinater mellem de koordinatsystemer, der bruges i Danmark og Grønland.
-order: 0
 ---
+
+# WEBPROJ
 
 WEBPROJ transformerer 2D-, 3D- og 4D-koordinater mellem de koordinatsystemer (CRS), der bruges i Danmark og Grønland. Tjenesten udstilles via [Dataforsyningen](https://dataforsyningen.dk).
 
@@ -12,7 +12,7 @@ Til adgang benyttes Dataforsyningens brugeradgang som ved andre tjenester. Du sk
 
 ## Endpoints
 
-API-versionen angives i stien. `v1.0`, `v1.1` og `v1.2` er alle tilgængelige, og vi anbefaler den nyeste, `v1.2`.
+Alle stier er relative til `https://api.dataforsyningen.dk/rest/webproj`. API-versionen angives i stien. `v1.0`, `v1.1` og `v1.2` er alle tilgængelige, og vi anbefaler den nyeste, `v1.2`.
 
 | Endpoint | Beskrivelse |
 |---|---|
@@ -27,8 +27,8 @@ De ældre versioner har de samme endpoints, bortset fra `/info/`, og adskiller s
 
 ## Transformér en koordinat
 
-```sh
-curl "$WEBPROJ/v1.2/trans/EPSG:4258/DK:S34S/55.0,12.0?token=$TOKEN"
+```bash
+curl "https://api.dataforsyningen.dk/rest/webproj/v1.2/trans/EPSG:4258/DK:S34S/55.0,12.0?token=$TOKEN"
 ```
 
 ```json
