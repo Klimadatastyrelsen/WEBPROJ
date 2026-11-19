@@ -1,117 +1,64 @@
 # WEBPROJ
 
-WEBPROJ is a REST API that exposes coordinate transformations for coordinate
-reference systems in Denmark and Greenland. The production version of WEBPROJ
-is running as part of [Dataforsyningen](https://dataforsyningen.dk). To use the API you
-need an access token, which users of Dataforsyningen can generate when they are
-logged in to their personal accounts. The documentation the REST API can be found
-at https://docs.dataforsyningen.dk/#webproj.
+WEBPROJ is a REST API that transforms coordinates between the coordinate
+reference systems used in Denmark and Greenland. The production version runs
+as part of [Dataforsyningen](https://dataforsyningen.dk). To use the API you
+need a Dataforsyningen token.
 
-## API
+How to use the API (Danish): [docs/site/api/index.md](docs/site/api/index.md).
 
-The API is a simple REST API that delivers data in JSON format. The two main
-entry points are provided: `/crs/` and `/trans/`.
+## Development
 
-### Installation
+You can use [uv](https://docs.astral.sh/uv/) or [conda](https://anaconda.org/anaconda/conda).
+Pick uv if you care about alignment with production.
 
-This repository supports development environments via either [conda](https://anaconda.org/anaconda/conda) or [uv](https://docs.astral.sh/uv/). Pick uv if you care about alignment with production.
+### uv
 
-#### Conda
-
-Create a new environment
-
-```
-$ conda env create -f environment-dev.yaml
-```
-
-Activate the new environment with
-
-```
-$ conda activate webproj
-```
-
-Remember to run projsync in order to install the datum grids.
-
-```
-$ projsync --source-id dk_sdfe
-$ projsync --source-id dk_sdfi
-$ projsync --source-id dk_kds
-```
-
-#### uv
-
-1. Create a new environment: `uv venv`
-2. Install dependencies: `uv pip install -e '.[dev]'`
-3. Sync the datum grids: 
+Install the dependencies and the datum grids:
 
 ```bash
+uv venv
+uv pip install -e '.[dev]'
 uv run pyproj sync --source-id dk_sdfe
 uv run pyproj sync --source-id dk_sdfi
 uv run pyproj sync --source-id dk_kds
 ```
 
-And that's that. 
-
-Start the local webserver with:
+Start the local server on `http://127.0.0.1:8000/`:
 
 ```bash
 uv run fastapi dev src/app/main.py
 ```
 
-Run tests with:
+Run the tests:
 
 ```bash
 uv run pytest
 ```
 
-### Tests
+### Conda
 
-WEBPROJ uses the `pytest` environment for tests. Run the test-suite with
-
+```bash
+conda env create -f environment-dev.yaml
+conda activate webproj
+projsync --source-id dk_sdfe
+projsync --source-id dk_sdfi
+projsync --source-id dk_kds
+pytest
 ```
-$ pytest
-```
-
-in the root of the repository.
 
 ### Docker
 
-In the root of the repo, run
-
-```
-$ docker build -t webproj .
-```
-
-The API can be started with
-
-```
-$ docker run -p 8000:8080 webproj
+```bash
+docker build -t webproj .
+docker run -p 8000:8080 webproj
+curl 127.0.0.1:8000/v1.2/info/
 ```
 
-Test it using
+## OpenAPI spec
 
-```
-$ curl 127.0.0.1:8000/v1.2/info/
-{"webproj_version":"1.2.5","proj_version":"9.8.1"}
-```
-
-
-### Usage
-
-For a simple demonstration of the WEBPROJ REST API a webserver can
-be started locally by running
-
-```
-$ uv run fastapi dev src/app/main.py
-```
-
-This will spawn a web-server that serves the API locally on
-`http://127.0.0.1:8000/`.
-
-The API exposes a small set of features that are accessed via URL
-entry points. OpenAPI documentation is auto-generated and is available
-in a user-friendly web UI at `/documentation`. A machine-readable version
-of the same documentation is available at `/openapi.json`.
+The running API serves interactive documentation at `/documentation` and the
+spec at `/openapi.json`.
 
 A copy of the spec is committed as `openapi.json` in the repository root.
 The KDS documentation site syncs it, together with the pages in `docs/site/`,
@@ -119,85 +66,6 @@ from this repository. When the API or `__version__` changes, regenerate it
 with `python scripts/export_openapi.py` and commit the result. CI fails if
 the committed file is out of date.
 
-For version 1.0 of the API we have:
+## Releases
 
-#### `/crs/`
-
-Returns a list of available coordinate references systems that can
-be transformed between.
-
-##### Example
-
-```
-$ curl http://127.0.0.1:8000/v1.0/crs/
-{
-DK: [
-    "EPSG:25832",
-    "EPSG:4258"
-],
-GL: [
-    "EPSG:3184",
-    "EPSG:4909"
-]
-}
-```
-
-#### `/crs/<CRS>`
-
-Returns information about a specific coordinate reference system.
-
-##### Example
-
-```
-$curl http://127.0.0.1:8000/v1.0/crs/EPSG:25832
-{
-    country: "DK",
-    title: "ETRS89 / UTM Zone 32 Nord",
-    title_short: "ETRS89/UTM32N",
-    v1: "Easting",
-    v1_short: "x",
-    v2: "Northing",
-    v2_short: "y",
-    v3: "kote",
-    v3_short: "h",
-    v4: null,
-    v4_short: null
-}
-```
-
-#### `/trans/<src_crs>/<dst_crs>/<coord>`
-
-Transform coordinate `<coord>` from `<src_crs>` to `<dst_src`. Coordinate
-input can be either 2D, 3D or 4D. The returned output will always be 4D, but
-depending on the input the number of used output coordinate components varies.
-
-##### Examples
-
-```
-# 2D
-curl http://127.0.0.1:8000/v1.0/trans/EPSG:4258/EPSG:25832/12.0,56.0
-{
-    "v1:": 687071.4391094431,
-    "v2": 6210141.326748009,
-    "v3": 0.0,
-    "v4": 0.0
-}
-
-# 3D
-curl http://127.0.0.1:8000/v1.0/trans/EPSG:4258/EPSG:25832/12.0,56.0,30.0
-{
-    "v1:": 687071.4391094431,
-    "v2": 6210141.326748009,
-    "v3": 30.0,
-    "v4": 0.0
-}
-
-# 4D
-curl http://127.0.0.1:8000/v1.0/trans/EPSG:4258/EPSG:25832/12.0,56.0,30.0,2010.5
-{
-    "v1:": 687071.4391094431,
-    "v2": 6210141.326748009,
-    "v3": 30.0,
-    "v4": 2010.5
-}
-```
+See [HOWTORELEASE.md](HOWTORELEASE.md).
