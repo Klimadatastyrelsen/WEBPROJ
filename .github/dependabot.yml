@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: '/'
+    target-branch: k8s
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      pip:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: docker
+    directory: '/'
+    target-branch: k8s
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      docker:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: github-actions
+    directory: '/'
+    target-branch: k8s
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        update-types:
+          - minor
+          - patch
