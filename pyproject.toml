@@ -22,7 +22,7 @@ classifiers = [
     "Topic :: Utilities",
 ]
 dependencies = [
-    "pyproj==3.7.2",
+    "pyproj==3.8.0",
     "fastapi",
     "uvicorn[standard]",
     "pydantic",
